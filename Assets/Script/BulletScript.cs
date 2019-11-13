@@ -35,6 +35,20 @@ public class BulletScript : MonoBehaviour {
         }
 	}
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(!collision.gameObject.CompareTag("Player"))
+        {
+            deltaTime = destroyTime;
+        }
+        else if (collision.gameObject.CompareTag("Enemyes"))
+        {
+            Destroy(this);
+        }
+    }
+
+
+
+
 
 }
