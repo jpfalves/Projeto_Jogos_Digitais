@@ -8,6 +8,7 @@ TagManager:
   - RightCollide
   - Tiro
   - Enemyes
+  - Void
   layers:
   - Default
   - TransparentFX

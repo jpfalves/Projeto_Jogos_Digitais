@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 66c9404e214c9564db2fc3543f914be0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainMenuMusicLoop: {instanceID: 0}
+  - musicPlayerDeath: {fileID: 8300000, guid: 3fba1f716b1ed084d9e8ed0aceb6f83f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

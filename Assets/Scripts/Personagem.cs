@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour {
 
-	public float jumpForce;
+    public GameSettings GameSettingsData;
+    public float jumpForce;
 	public Animator Anim;
     public Rigidbody2D rb;
     public BoxCollider2D cxcolisao;
 	public char direcaotiro;
+    private PlayMusic playMusic;                                        //Reference to PlayMusic script
+    private float fastFadeIn = .02f;									//Very short fade time (10 milliseconds) to start playing music immediately without a click/glitch
 
-	// Parâmetros da Animação
-	public static int chao = Animator.StringToHash("chao");
+
+    // Parâmetros da Animação
+    public static int chao = Animator.StringToHash("chao");
 	public static int move = Animator.StringToHash("move");
 	public static int atk = Animator.StringToHash("atk");
+    public static int damage = Animator.StringToHash("death");
 
-	//Shoting
 
-	public Transform spawnBullet;
+    //Shoting
+
+    public Transform spawnBullet;
     public GameObject bullet;
 
 	//IsGround verify
@@ -39,7 +45,8 @@ public class Personagem : MonoBehaviour {
         Anim.SetBool(chao, true);
         Anim.SetBool(move, false);
         Anim.SetBool(atk, false);
-		direcaotiro= 'D';
+        Anim.SetBool(damage, false);
+        direcaotiro = 'D';
     }
 
     // Update is called once per frame
@@ -108,6 +115,39 @@ public class Personagem : MonoBehaviour {
 		Gizmos.DrawWireSphere(groundCheck.position, radious);
 	}
 	*/
+
+    void OnCollisionEnter2D(Collision2D colisor)
+    {
+        if (colisor.gameObject.tag == "Void")
+        {
+            Anim.SetBool(damage, true);
+            GameController.lifeCount = 0;
+        }
+
+        if (colisor.gameObject.tag == "Enemyes")
+        {
+            Anim.SetBool(damage, true);
+            GameController.lifeCount -= 1;
+            PlayPlayerDeathSound();
+
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemyes")
+        {
+            Anim.SetBool(damage, false);
+        }
+    }
+
+    public void PlayPlayerDeathSound()
+    {
+        //Fade up music nearly instantly without a click 
+      //  playMusic.FadeUp(fastFadeIn);
+        //Play second music clip from MenuSettings
+      //  playMusic.PlaySelectedMusic(GameSettingsData.musicPlayerDeath);
+    }
 
     public void SimpleAtk()
     {

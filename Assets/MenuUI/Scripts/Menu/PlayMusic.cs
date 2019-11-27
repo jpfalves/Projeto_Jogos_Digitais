@@ -19,9 +19,7 @@ public class PlayMusic : MonoBehaviour {
 
 	void Awake () 
 	{
-		//Get a component reference to the AudioSource attached to the UI game object
 		musicSource = GetComponent<AudioSource> ();
-		//Call the PlayLevelMusic function to start playing music
 	}
 
 
@@ -36,7 +34,6 @@ public class PlayMusic : MonoBehaviour {
 				break;
 			//If scene index is 1 (usually main scene) assign the clip mainMusic to musicSource
 			case 1:
-                Debug.Log("Scene index is 1, setting music to " + menuSettings.musicLoopToChangeTo);
 				musicSource.clip = menuSettings.musicLoopToChangeTo;
 				break;
 
