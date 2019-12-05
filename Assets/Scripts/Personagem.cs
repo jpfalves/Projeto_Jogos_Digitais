@@ -53,6 +53,11 @@ public class Personagem : MonoBehaviour {
     void Update()
     {
 
+        if (GameController.lifeCount <= 0)
+        {
+            Anim.SetBool(damage, true);
+        }
+
 		if (Input.GetButtonDown("Fire1"))
         {
             Anim.SetBool(atk, true);
@@ -155,21 +160,6 @@ public class Personagem : MonoBehaviour {
                                                    -this.transform.localScale;
         ObjectPull.GetInstance().Create(spawnBullet.position, Quaternion.identity,
                                                                        direction);
-
-        //if (bullet != null)
-        //{
-
-        //    //if (direcaotiro == 'D')
-        //    //{          
-        //    //    var cloneBullet = Instantiate(bullet, spawnBullet.position, Quaternion.identity);
-        //    //    cloneBullet.transform.localScale = this.transform.localScale;
-        //    //}
-        //    //else
-        //    //{
-        //    //    var cloneBullet = Instantiate(bullet, spawnBullet.position, Quaternion.identity);
-        //    //    cloneBullet.transform.localScale = -this.transform.localScale;
-        //    //}
-        //}
     }
 
 }
